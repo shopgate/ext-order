@@ -2,7 +2,7 @@
   "version": "1",
   "pipeline": {
     "id": "shopgate.order.createOrder.v1",
-    "public": true,
+    "public": false,
     "input": [
       {"key": "order", "id": "10"}
     ],
@@ -13,10 +13,8 @@
       {
         "type": "extension",
         "id": "@shopgate/order",
-        "path": "@shopgate/order/order/preCheck.js",
-        "input": [
-          {"key": "order", "id": "10"}
-        ],
+        "path": "@shopgate/order/order/checkContext.js",
+        "input": [],
         "output": []
       },
       {
@@ -27,17 +25,6 @@
           {"key": "order", "id": "10"}
         ],
         "output": []
-      },
-      {
-        "type": "extension",
-        "id": "@shopgate/order",
-        "path": "@shopgate/order/order/checkIdempotancy.js",
-        "input": [
-          {"key": "order", "id": "10"}
-        ],
-        "output": [
-          {"key": "orderId", "id": "20"}
-        ]
       },
       {
         "type": "conditional",

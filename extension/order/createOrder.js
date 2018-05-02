@@ -20,13 +20,6 @@ module.exports = async (context, input) => {
 
   order.orderId = orderId
   try {
-    await context.storage.extension.set(`${input.order.checkoutId}-orderId`, orderId)
-  } catch (err) {
-    context.log.error(err, `Failed to set orderId for checkoutId into extension storage`)
-    throw new InternalError()
-  }
-
-  try {
     await context.storage.extension.set(orderId, order)
   } catch (err) {
     context.log.error(err, 'Failed to save order into extension storage')

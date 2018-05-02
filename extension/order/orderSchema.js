@@ -18,15 +18,12 @@ const schemaSingleItem = Joi.object().keys({
 const schemaOrder = Joi.object().keys({
   user: schemaUser,
   items: Joi.array().min(1).items(schemaSingleItem),
-  /* add more keys to validate */
-  checkoutId: Joi.string().required(),
   currency: Joi.string().required().length(3), // ISO code of 3 symbols
   taxAmount: Joi.number().required(),
   total: Joi.number().required()
 }).requiredKeys([
   'user',
   'items',
-  'checkoutId',
   'currency',
   'taxAmount',
   'total'

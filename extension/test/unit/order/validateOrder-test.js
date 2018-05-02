@@ -11,7 +11,7 @@ describe('validateOrder', () => {
   const validCoupon = {id: '10off', name: 'Coupon 10% off', type: 'coupon', unitPrice: 100, quantity: 1}
 
   const inValidUser = {id: 'qwqw-we-er-r-r', mail: 'mail ... mail.com', firstName: 'John', lastName: 'Doe'}
-  const inValidItem = {id: 'SG1', name: 'Cool product', type: 'not product', unitPrice: 100, quantity: 0}
+  const inValidItem = {id: 'SG1', name: 'Non product item', type: 'not product', unitPrice: 100, quantity: 0}
 
   // noinspection JSValidateTypes
   /** @type {ExtOrder} */

@@ -1,7 +1,7 @@
 const OrderError = require('./../errors/OrderError')
 
 /**
- * PreCheck is user is logged in, etc
+ * Check if user storage available, etc
  *
  * @param {SDKContext} context
  */

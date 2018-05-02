@@ -1,8 +1,8 @@
 const assert = require('assert')
-const executeStep = require('../../../order/preCheck')
+const executeStep = require('../../../order/checkContext')
 const OrderError = require('../../../errors/OrderError')
 
-describe('preCheck', () => {
+describe('checkContext', () => {
   const contextFixture = {
     log: {
       warn () {}
@@ -12,7 +12,7 @@ describe('preCheck', () => {
     }
   }
 
-  it('Should throw error on preCheck', async () => {
+  it('Should throw error on checkContext', async () => {
     try {
       // noinspection JSCheckFunctionSignatures
       await executeStep(contextFixture)
@@ -21,7 +21,7 @@ describe('preCheck', () => {
     }
   })
 
-  it('Should bot throw error on preCheck', async () => {
+  it('Should bot throw error on checkContext', async () => {
     try {
       // noinspection JSCheckFunctionSignatures
       await executeStep({...contextFixture, meta: {userId: 100}})
