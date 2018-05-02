@@ -1,0 +1,72 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate.order.createOrder.v1",
+    "public": false,
+    "input": [
+      {"key": "order", "id": "10"}
+    ],
+    "output": [
+      {"key": "orderId", "id": "20"}
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/checkContext.js",
+        "input": [],
+        "output": []
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/validateOrder.js",
+        "input": [
+          {"key": "order", "id": "10"}
+        ],
+        "output": []
+      },
+      {
+        "type": "conditional",
+        "input": [
+          {"key": "orderId", "id": "20"}
+        ],
+        "expression": {"null": [{"name": "orderId"}]},
+        "then": {
+          "type": "extension",
+          "id": "@shopgate/order",
+          "path": "@shopgate/order/order/createOrder.js",
+          "input": [
+            {"key": "order", "id": "10"}
+          ],
+          "output": [
+            {"key": "orderId", "id": "20"}
+          ]
+        }
+      },
+      {
+        "type": "conditional",
+        "input": [
+          {"key": "orderId", "id": "20"}
+        ],
+        "expression": {"null": [{"name": "orderId"}]},
+        "then": {
+          "type": "extension",
+          "id": "@shopgate/order",
+          "path": "@shopgate/order/order/assignToUser.js",
+          "input": [
+            {"key": "orderId", "id": "20"}
+          ],
+          "output": []
+        }
+      },
+      {
+        "type": "errorCatchExtension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/handleError.js",
+        "input": [],
+        "output": []
+      }
+    ]
+  }
+}
