@@ -1,7 +1,7 @@
 {
   "version": "1",
   "pipeline": {
-    "id": "shopgate.order.createOrder.v1",
+    "id": "shopgate.order.create.v1",
     "public": false,
     "input": [
       {"key": "order", "id": "10"}
@@ -27,38 +27,24 @@
         "output": []
       },
       {
-        "type": "conditional",
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/createOrder.js",
         "input": [
-          {"key": "orderId", "id": "20"}
+          {"key": "order", "id": "10"}
         ],
-        "expression": {"null": [{"name": "orderId"}]},
-        "then": {
-          "type": "extension",
-          "id": "@shopgate/order",
-          "path": "@shopgate/order/order/createOrder.js",
-          "input": [
-            {"key": "order", "id": "10"}
-          ],
-          "output": [
-            {"key": "orderId", "id": "20"}
-          ]
-        }
+        "output": [
+          {"key": "orderId", "id": "20"}
+        ]
       },
       {
-        "type": "conditional",
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/assignToUser.js",
         "input": [
           {"key": "orderId", "id": "20"}
         ],
-        "expression": {"null": [{"name": "orderId"}]},
-        "then": {
-          "type": "extension",
-          "id": "@shopgate/order",
-          "path": "@shopgate/order/order/assignToUser.js",
-          "input": [
-            {"key": "orderId", "id": "20"}
-          ],
-          "output": []
-        }
+        "output": []
       },
       {
         "type": "errorCatchExtension",
