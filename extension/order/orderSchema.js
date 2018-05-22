@@ -15,15 +15,24 @@ const schemaSingleItem = Joi.object().keys({
   quantity: Joi.number().positive().integer().min(1) // 1 | 2 | ...
 })
 
+const schemaShippingMethod = Joi.object().keys({
+  id: Joi.string().required(),
+  name: Joi.string().required(),
+  amount: Joi.number().integer().min(0),
+  taxAmount: Joi.number().integer().min(0)
+})
+
 const schemaOrder = Joi.object().keys({
   user: schemaUser,
   items: Joi.array().min(1).items(schemaSingleItem),
+  shippingMethod: schemaShippingMethod,
   currency: Joi.string().required().length(3), // ISO code of 3 symbols
   taxAmount: Joi.number().required(),
   total: Joi.number().required()
 }).requiredKeys([
   'user',
   'items',
+  'shippingMethod',
   'currency',
   'taxAmount',
   'total'
