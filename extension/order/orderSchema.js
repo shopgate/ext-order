@@ -22,10 +22,18 @@ const schemaShippingMethod = Joi.object().keys({
   taxAmount: Joi.number().integer().min(0)
 })
 
+const schemaPaymentMethod = Joi.object().keys({
+  id: Joi.string().required(),
+  name: Joi.string().required(),
+  amount: Joi.number().integer().min(0),
+  taxAmount: Joi.number().integer().min(0)
+})
+
 const schemaOrder = Joi.object().keys({
   user: schemaUser,
   items: Joi.array().min(1).items(schemaSingleItem),
   shippingMethod: schemaShippingMethod,
+  paymentMethod: schemaPaymentMethod,
   currency: Joi.string().required().length(3), // ISO code of 3 symbols
   taxAmount: Joi.number().required(),
   total: Joi.number().required()
@@ -33,6 +41,7 @@ const schemaOrder = Joi.object().keys({
   'user',
   'items',
   'shippingMethod',
+  'paymentMethod',
   'currency',
   'taxAmount',
   'total'

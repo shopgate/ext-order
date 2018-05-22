@@ -15,12 +15,16 @@ describe('validateOrder', () => {
   const validShipppingMethod = {id: 'DHL', name: 'DHL next day delivery', amount: 100, taxAmount: 0}
   const inValidShipppingMethod = {id: 'malformed shipping method', name: null, amount: -100, taxAmount: 0}
 
+  const validPaymentMethod = {id: 'paypal', name: 'PayPal', amount: 0, taxAmount: 0}
+  const inValidPaymentMethod = {id: 'malformed payment method', name: null, amount: -100, taxAmount: 0}
+
   // noinspection JSValidateTypes
   /** @type {ExtOrder} */
   const orderFixture = {
     user: validUser,
     items: [validProduct, validCoupon],
     shippingMethod: validShipppingMethod,
+    paymentMethod: validPaymentMethod,
     logs: [{id: 1}],
     currency: 'EUR',
     taxAmount: 0,
@@ -44,7 +48,8 @@ describe('validateOrder', () => {
     'It should fail when user is not valid': {...orderFixture, user: inValidUser},
     'It should fail when item is not valid': {...orderFixture, items: [inValidProduct]},
     'It should fail when currency is not valid': {...orderFixture, currency: 'QWERTY'},
-    'It should fail when shipping method is not valid': {...orderFixture, shippingMethod: inValidShipppingMethod}
+    'It should fail when shipping method is not valid': {...orderFixture, shippingMethod: inValidShipppingMethod},
+    'It should fail when payment method is not valid': {...orderFixture, paymentMethod: inValidPaymentMethod}
   }
 
   Object.entries(failedTests).forEach(([testIt, inputOrder]) => {
