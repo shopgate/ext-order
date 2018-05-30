@@ -1,6 +1,6 @@
 const assert = require('assert')
 const executeStep = require('../../../order/validateOrder')
-const ValidationError = require('../../../errors/ValidationError')
+const ValidationError = require('../../../common/Error/ValidationError')
 
 describe('validateOrder', () => {
   /** @type {ExtOrderUser} */

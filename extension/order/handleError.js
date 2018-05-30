@@ -1,4 +1,4 @@
-const OrderError = require('./../errors/OrderError')
+const OrderError = require('./../common/Error/OrderError')
 
 /**
  * Order error handler for create order pipeline
