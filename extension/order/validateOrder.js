@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const ValidationError = require('./../errors/ValidationError')
+const ValidationError = require('./../common/Error/ValidationError')
 const {schemaOrder} = require('./orderSchema')
 
 /**

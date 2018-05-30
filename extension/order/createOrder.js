@@ -1,5 +1,5 @@
 const uuidv4 = require('uuid/v4')
-const InternalError = require('./../errors/InternalError')
+const InternalError = require('./../common/Error/InternalError')
 
 /**
  * @typedef {Object} CreateOrderInput

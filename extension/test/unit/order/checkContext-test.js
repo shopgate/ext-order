@@ -1,6 +1,6 @@
 const assert = require('assert')
-const executeStep = require('../../../order/checkContext')
-const OrderError = require('../../../errors/OrderError')
+const executeStep = require('../../../common/Error/checkContext')
+const OrderError = require('../../../common/Error/OrderError')
 
 describe('checkContext', () => {
   const contextFixture = {

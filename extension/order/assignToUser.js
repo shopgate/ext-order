@@ -1,4 +1,4 @@
-const InternalError = require('./../errors/InternalError')
+const InternalError = require('./../common/Error/InternalError')
 
 /**
  * @typedef {Object} AssignToUserInput
