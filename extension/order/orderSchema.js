@@ -11,22 +11,22 @@ const schemaSingleItem = Joi.object().keys({
   id: Joi.string().required(),
   name: Joi.string().required(),
   type: Joi.string().valid(['product', 'coupon']).required(),
-  unitPrice: Joi.number().integer(), // -100 | 0 | 100
+  unitPrice: Joi.number(), // -100 | 0 | 100
   quantity: Joi.number().positive().integer().min(1) // 1 | 2 | ...
 })
 
 const schemaShippingMethod = Joi.object().keys({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  amount: Joi.number().integer().min(0),
-  taxAmount: Joi.number().integer().min(0)
+  amount: Joi.number(),
+  taxAmount: Joi.number().min(0)
 })
 
 const schemaPaymentMethod = Joi.object().keys({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  amount: Joi.number().integer().min(0),
-  taxAmount: Joi.number().integer().min(0)
+  amount: Joi.number(),
+  taxAmount: Joi.number().min(0)
 })
 
 const schemaOrder = Joi.object().keys({
@@ -35,7 +35,6 @@ const schemaOrder = Joi.object().keys({
   shippingMethod: schemaShippingMethod,
   paymentMethod: schemaPaymentMethod,
   currency: Joi.string().required().length(3), // ISO code of 3 symbols
-  taxAmount: Joi.number().required(),
   total: Joi.number().required()
 }).requiredKeys([
   'user',
@@ -43,7 +42,6 @@ const schemaOrder = Joi.object().keys({
   'shippingMethod',
   'paymentMethod',
   'currency',
-  'taxAmount',
   'total'
 ]).unknown(true) // other keys are allowed as well
 
