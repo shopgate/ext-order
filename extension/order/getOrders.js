@@ -1,14 +1,17 @@
-const Joi = require('joi')
-const ValidationError = require('./../common/Error/ValidationError')
-const getOrdersRequestSchema = require('./getOrdersRequestSchema')
-
 /**
+ * Get orders from source by orderIds in parallel
  * @param {SDKContext} context
- * @param {Object} input
+ * @param {{orderIds: string[]}} input
+ * @return {Promise<{orders: Object[]}>}
  */
 module.exports = async (context, input) => {
-  const validationResult = Joi.validate(input, getOrdersRequestSchema)
-  if (validationResult.error) {
-    throw new ValidationError(validationResult.error.details[0].message)
+  const promises = input.orderIds.map(orderId => {
+    context.storage.extension.get(orderId)
+  })
+
+  const orders = await Promise.all(promises)
+
+  return {
+    orders
   }
 }
