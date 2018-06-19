@@ -1,0 +1,51 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate.order.getOrders.v1",
+    "public": true,
+    "input": [
+      {"key": "limit", "id": "10", "optional": true},
+      {"key": "offset", "id": "11", "optional": true},
+      {"key": "sort", "id": "12", "optional": true},
+      {"key": "filters", "id": "13", "optional": true}
+    ],
+    "output": [
+      {"key": "orders", "id": "20"}
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/getOrdersRequestValidate.js",
+        "input": [
+          {"key": "limit", "id": "10", "optional": true},
+          {"key": "offset", "id": "11", "optional": true},
+          {"key": "sort", "id": "12", "optional": true},
+          {"key": "filters", "id": "13", "optional": true}
+        ],
+        "output": []
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/getOrders.js",
+        "input": [
+          {"key": "limit", "id": "10", "optional": true},
+          {"key": "offset", "id": "11", "optional": true},
+          {"key": "sort", "id": "12", "optional": true},
+          {"key": "filters", "id": "13", "optional": true}
+        ],
+        "output": [
+          {"key": "orders", "id": "20"}
+        ]
+      },
+      {
+        "type": "errorCatchExtension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/handleError.js",
+        "input": [],
+        "output": []
+      }
+    ]
+  }
+}
