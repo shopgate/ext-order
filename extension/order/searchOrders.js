@@ -1,3 +1,4 @@
+const OrderError = require('./../common/Error/OrderError')
 /**
  * @typedef {Object} SearchOrdersInput
  * @property {number} limit
@@ -7,10 +8,8 @@
  */
 
 /**
- * @param {SDKContext} context
- * @param {SearchOrdersInput} input
  * @return {Promise<{orderIds: string[]}>}
  */
-module.exports = async (context, input) => {
-
+module.exports = async () => {
+  throw new OrderError('Not implemented yet')
 }

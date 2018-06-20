@@ -23,17 +23,33 @@
           {"key": "sort", "id": "12", "optional": true},
           {"key": "filters", "id": "13", "optional": true}
         ],
-        "output": []
+        "output": [
+          {"key": "limit", "id": "10", "optional": true},
+          {"key": "offset", "id": "11", "optional": true},
+          {"key": "sort", "id": "12", "optional": true},
+          {"key": "filters", "id": "13", "optional": true}
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/order",
+        "path": "@shopgate/order/order/searchUserOrders.js",
+        "input": [
+          {"key": "limit", "id": "10", "optional": true},
+          {"key": "offset", "id": "11", "optional": true},
+          {"key": "sort", "id": "12", "optional": true},
+          {"key": "filters", "id": "13", "optional": true}
+        ],
+        "output": [
+          {"key": "orderIds", "id": "30"}
+        ]
       },
       {
         "type": "extension",
         "id": "@shopgate/order",
         "path": "@shopgate/order/order/getOrders.js",
         "input": [
-          {"key": "limit", "id": "10", "optional": true},
-          {"key": "offset", "id": "11", "optional": true},
-          {"key": "sort", "id": "12", "optional": true},
-          {"key": "filters", "id": "13", "optional": true}
+          {"key": "orderIds", "id": "30"}
         ],
         "output": [
           {"key": "orders", "id": "20"}

@@ -18,7 +18,7 @@ module.exports = async (context, input) => {
   // generate orderId
   const orderId = uuidv4()
 
-  order.orderId = orderId
+  order.id = orderId
   try {
     await context.storage.extension.set(orderId, order)
   } catch (err) {

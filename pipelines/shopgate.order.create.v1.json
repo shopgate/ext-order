@@ -34,7 +34,7 @@
           {"key": "order", "id": "10"}
         ],
         "output": [
-          {"key": "orderId", "id": "20"}
+          {"key": "id", "id": "20"}
         ]
       },
       {

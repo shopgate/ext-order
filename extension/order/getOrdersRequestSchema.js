@@ -15,8 +15,8 @@ const schemaSingleFilterItem = Joi.object().keys({
 })
 
 const getOrdersRequestSchema = Joi.object().keys({
-  limit: Joi.number().positive().integer().default(10),
-  offset: Joi.number().integer().default(0).min(0),
+  limit: Joi.number().positive().integer().default(5),
+  offset: Joi.number().integer().min(0).default(0),
   sort: Joi.array().items(schemaSingleSortItem),
   filters: Joi.array().items(schemaSingleFilterItem)
 })

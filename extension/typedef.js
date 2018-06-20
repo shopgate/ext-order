@@ -45,6 +45,7 @@
 
 /**
  * @typedef {Object} ExtOrder
+ * @property {?string} id
  * @property {!ExtOrderUser} user
  * @property {!ExtOrderItem[]} items
  * @property {?ExtOrderAddress} shippingAddress
@@ -54,7 +55,6 @@
  * @property {?ExtOrderTransaction[]} transactions
  * @property {?Object[]} customFields
  * @property {!string} checkoutId
- * @property {?string} orderId
  * @property {!string} currency
  * @property {!number} taxAmount
  * @property {!number} total
