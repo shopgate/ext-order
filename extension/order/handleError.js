@@ -1,7 +1,7 @@
 const OrderError = require('./../common/Error/OrderError')
 
 /**
- * Order error handler for create order pipeline
+ * Order error handler order pipelines
  * @param {?Error} error
  * @param {SDKContext} context
  */
@@ -17,6 +17,6 @@ module.exports = async (error, context) => {
   }
 
   // Outer error. log and throw own error
-  context.log.error(error, 'Error in creating new order')
+  context.log.error(error, 'Error in order extension')
   throw new OrderError(error)
 }

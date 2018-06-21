@@ -1,19 +1,17 @@
 const Joi = require('joi')
 const ValidationError = require('./../common/Error/ValidationError')
-const {schemaOrder} = require('./orderSchema')
-
-/**
- * @typedef {Object} ValidateOrderInput
- * @property {ExtOrder} order
- */
+const getOrdersRequestSchema = require('./getOrdersRequestSchema')
 
 /**
  * @param {SDKContext} context
- * @param {ValidateOrderInput} input
+ * @param {Object} input
  */
 module.exports = async (context, input) => {
-  const validationResult = Joi.validate(input.order, schemaOrder, { stripUnknown: true })
+  const validationResult = Joi.validate(input, getOrdersRequestSchema)
   if (validationResult.error) {
     throw new ValidationError(validationResult.error.details[0].message)
   }
+
+  // Return normalized input with default values
+  return validationResult.value
 }
