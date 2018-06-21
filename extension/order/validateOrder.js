@@ -12,7 +12,7 @@ const {schemaOrder} = require('./orderSchema')
  * @param {ValidateOrderInput} input
  */
 module.exports = async (context, input) => {
-  const validationResult = Joi.validate(input.order, schemaOrder)
+  const validationResult = Joi.validate(input.order, schemaOrder, { stripUnknown: true })
   if (validationResult.error) {
     throw new ValidationError(validationResult.error.details[0].message)
   }
