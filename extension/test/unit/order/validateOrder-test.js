@@ -15,6 +15,8 @@ describe('validateOrder', () => {
   const validShipppingMethod = {id: 'DHL', name: 'DHL next day delivery', amount: 100, taxAmount: 0}
   const inValidShipppingMethod = {id: 'malformed shipping method', name: null, amount: -100, taxAmount: 0}
 
+  const validAddress = {id: '11-22-33-44-55', firstName: 'Indiana', lastName: 'Jones', street: 'Indigo street 11F-a', city: 'Cucumbertown', provinceCode: 'TX', countryCode: 'US', zipCode: '12345'}
+
   const validPaymentMethod = {id: 'paypal', name: 'PayPal', amount: 0, taxAmount: 0}
   const inValidPaymentMethod = {id: 'malformed payment method', name: null, amount: -100, taxAmount: 0}
 
@@ -23,11 +25,17 @@ describe('validateOrder', () => {
   const orderFixture = {
     user: validUser,
     items: [validProduct, validCoupon],
+    shippingAddress: validAddress,
+    billingAddress: validAddress,
     shippingMethod: validShipppingMethod,
     paymentMethod: validPaymentMethod,
     logs: [{id: 1}],
     currency: 'EUR',
     taxAmount: 0,
+    totals: [{
+      id: 'subTotal',
+      amount: 32.5
+    }],
     total: 0
   }
 
