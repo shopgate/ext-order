@@ -1,5 +1,5 @@
 const assert = require('assert')
-const executeStep = require('../../../common/Error/checkContext')
+const executeStep = require('../../../order/checkContext')
 const OrderError = require('../../../common/Error/OrderError')
 
 describe('checkContext', () => {
