@@ -13,7 +13,7 @@ const schemaAddress = Joi.object().keys({
   lastName: Joi.string().required().min(1).max(100),
   street: Joi.string().required().min(1).max(255),
   city: Joi.string().required().min(1).max(100),
-  provinceCode: Joi.string().optional().allow(null).max(10),
+  provinceCode: Joi.string().optional().allow([null, '']).max(10),
   countryCode: Joi.string().required().min(2).max(2),
   zipCode: Joi.string().required().min(1).max(10)
 })
